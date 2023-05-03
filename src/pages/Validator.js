@@ -43,13 +43,13 @@ const Validator = () => {
 		const pieces = layout_url.split('/');
 		
 		const layout_id = pieces[4], env_url = pieces[2];
-		axios.defaults.baseURL = `https:/${env_url}/wootwoot`;
 		
 		const headers = {
 			'Authorization': `Token ${api_key}`,
 			'Accept': 'application/json'
 		}
 		
+		axios.defaults.baseURL = `https:/${env_url}`;
 		var response = await axios.get(`/api/v5/layouts/${layout_id}`, {headers});
 		
 		console.log(response);
