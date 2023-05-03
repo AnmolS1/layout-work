@@ -49,7 +49,7 @@ const Validator = () => {
 			'Accept': 'application/json'
 		}
 		
-		axios.defaults.baseURL = `https:/${env_url}`;
+		// axios.defaults.baseURL = `https:/${env_url}`;
 		var response = await axios.get(`/api/v5/layouts/${layout_id}`, {headers});
 		
 		console.log(response);
