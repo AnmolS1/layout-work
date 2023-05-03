@@ -22,7 +22,7 @@ const Validator = () => {
 		file_upload.current.click();
 	}
 	
-	function getJson (event) {
+	const getJson = (event) => {
 		const uploadedFile = event.target.files[0];
 		const fileReader = new FileReader();
 		
@@ -36,7 +36,7 @@ const Validator = () => {
 		
 		fileReader.readAsText(uploadedFile);
 		upload_button.current.innerHTML = uploadedFile.name;
-	}
+	};
 	
 	async function getLayout(layout_url) {
 		const pieces = layout_url.split('/');
