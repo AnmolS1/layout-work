@@ -31,7 +31,9 @@ const Validator = () => {
 			
 			fileReader.onload = event => {
 				console.log(event);
-				resolve(JSON.parse(event.target.result))
+				const temp = JSON.parse(event.target.result);
+				console.log(temp);
+				resolve(temp);
 			};
 			fileReader.onerror = error => reject(error);
 			
