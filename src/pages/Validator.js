@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { StyledValidator } from '../styles';
 import { useRef, useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import fetch from 'node-fetch';
 
 const Validator = () => {
 	const comparison_tables = useRef(null);
@@ -22,7 +23,7 @@ const Validator = () => {
 		file_upload.current.click();
 	}
 	
-	const getJson = (event) => {
+	function getJson (event) {
 		const uploadedFile = event.target.files[0];
 		const fileReader = new FileReader();
 		
@@ -36,7 +37,7 @@ const Validator = () => {
 		
 		fileReader.readAsText(uploadedFile);
 		upload_button.current.innerHTML = uploadedFile.name;
-	};
+	}
 	
 	async function getLayout(layout_url) {
 		const pieces = layout_url.split('/');
@@ -54,7 +55,8 @@ const Validator = () => {
 					'Authorization': 'Token ' + api_key
 				}
 			});
-			const layout = await response.json();
+			console.log(response);
+			// const layout = await response.json();
 			return layout
 		};
 		
