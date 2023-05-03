@@ -20,15 +20,10 @@ const Validator = () => {
 	
 	function upload() {
 		file_upload.current.click();
-		
-		file_upload.current.onchange = () => {
-			upload_button.current.innerHTML = file_upload.current.files[0].name;
-		};
 	}
 	
-	const getJson = e => {
-		const uploadedFile = e.target.files[0];
-		
+	function getJson (event) {
+		const uploadedFile = event.target.files[0];
 		const fileReader = new FileReader();
 		
 		fileReader.onloadend = () => {
@@ -40,6 +35,7 @@ const Validator = () => {
 		};
 		
 		fileReader.readAsText(uploadedFile);
+		upload_button.current.innerHTML = uploadedFile.name;
 	}
 	
 	async function getLayout(layout_url) {
@@ -78,16 +74,14 @@ const Validator = () => {
 		if (file_upload.current.length === 0) {
 			alert('upload expectations first');
 			return;
-		} else {
-			// expected = await getJson(file_upload.current.files[0]);
 		}
 		
 		console.log(layout_url);
 		console.log(expected);
 		
-		// const layout = await getLayout(layout_url);
+		const layout = await getLayout(layout_url);
 		
-		// console.log(layout);
+		console.log(layout);
 	}
 	
 	return (
