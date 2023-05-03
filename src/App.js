@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { GlobalStyle } from './styles';
+import { Login, Home, Generator, Validator } from './pages';
+import { useCookies } from 'react-cookie';
+
+function ScrollToTop() {
+	const { pathname } = useLocation();
+	
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [pathname]);
+	
+	return null;
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [apiKey, setApiKey] = useState(null);
+	const [cookies, setCookie] = useCookies(['user']);
+	
+	useEffect(() => {
+		if (cookies.api_key) {
+			setApiKey(cookies.api_key);
+		}
+	}, [cookies.api_key]);
+	
+	return (
+		<div className="App">
+			<GlobalStyle />
+			
+			{
+				!apiKey ? (
+					<Login />
+				) : (
+					<>
+						<Router>
+							<ScrollToTop />
+							<Routes>
+								<Route path="/generate-json" element={<Generator />} />
+								<Route path="/validate-layout" element={<Validator />} />
+								<Route path="/" element={<Home />} />
+							</Routes>
+						</Router>
+					</>
+				)
+			}
+		</div>
+	);
 }
 
 export default App;
