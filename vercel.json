@@ -1,8 +1,12 @@
 {
 	"rewrites": [
 		{
-			"source": "/api/(.*)",
-			"destination": "https://hs-mas-test.ibm-intelligent-automation.com/api/(.*)"
+			"source": "/api/:path*",
+			"destination": "https://hs-mas-test.ibm-intelligent-automation.com/api/:path*"
+		},
+		{
+			"source": "/api/:path*/",
+			"destination": "https://hs-mas-test.ibm-intelligent-automation.com/api/:path*/"
 		}
 	]
 }
