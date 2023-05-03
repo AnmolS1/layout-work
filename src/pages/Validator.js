@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { StyledValidator } from '../styles';
 import { useRef, useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import fetch from 'node-fetch';
+import axios from 'axios';
 
 const Validator = () => {
 	const comparison_tables = useRef(null);
@@ -44,23 +44,38 @@ const Validator = () => {
 		
 		const layout_id = pieces[4], env_url = pieces[2];
 		
-		const call = async() => {
-			const response = await fetch('https:/' + env_url + '/api/v5/layouts/' + layout_id, {
-				method: 'GET',
-				crossorigin: true,
-				mode: 'cors',
-				credentials: 'include',
-				headers: {
-					'Accept': 'application/json',
-					'Authorization': 'Token ' + api_key
-				}
-			});
-			console.log(response);
-			// const layout = await response.json();
-			return layout
-		};
+		const headers = {
+			'Authorization': `Token ${api_key}`,
+			'Accept': 'application/json'
+		}
 		
-		return await call();
+		var response;
+		
+		axios.get(`https:/${env_url}/api/v5/layouts/${layout_id}`, {headers})
+			.then(res => response = res);
+		
+		console.log(response);
+		
+		return response;
+		
+		// const call = async() => {
+		// 	const response = await fetch('https:/' + env_url + '/api/v5/layouts/' + layout_id, {
+		// 		method: 'GET',
+		// 		crossorigin: true,
+		// 		mode: 'cors',
+		// 		credentials: 'include',
+		// 		headers: {
+		// 			'Accept': 'application/json',
+		// 			'Authorization': 'Token ' + api_key
+		// 		}
+		// 	});
+		// 	console.log(response);
+		// 	return response;
+		// 	// const layout = await response.json();
+		// 	// return layout
+		// };
+		// 
+		// return await call();
 	}
 	
 	async function validate() {
