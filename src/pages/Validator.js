@@ -49,10 +49,7 @@ const Validator = () => {
 			'Accept': 'application/json'
 		}
 		
-		var response;
-		
-		axios.get(`https:/${env_url}/api/v5/layouts/${layout_id}`, {headers})
-			.then(res => response = res);
+		var response = await axios.get(`https:/${env_url}/api/v5/layouts/${layout_id}`, {headers});
 		
 		console.log(response);
 		
