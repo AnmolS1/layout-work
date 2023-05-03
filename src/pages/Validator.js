@@ -9,6 +9,7 @@ const Validator = () => {
 	const input_url = useRef(null);
 	const upload_button = useRef(null);
 	const [api_key, setApiKey] = useState(null);
+	const [expected, setExpected] = useState(null);
 	const [cookies, setCookie] = useCookies(['user']);
 	
 	useEffect(() => {
@@ -25,20 +26,20 @@ const Validator = () => {
 		};
 	}
 	
-	async function getJson(file) {
-		return new Promise((resolve, reject) => {
-			const fileReader = new FileReader();
-			
-			fileReader.onload = event => {
-				console.log(event);
-				const temp = JSON.parse(event.target.result);
-				console.log(temp);
-				resolve(temp);
-			};
-			fileReader.onerror = error => reject(error);
-			
-			fileReader.readAsText(file);
-		});
+	const getJson = e => {
+		const uploadedFile = e.target.files[0];
+		
+		const fileReader = new FileReader();
+		
+		fileReader.onloadend = () => {
+			try {
+				setExpected(JSON.parse(fileReader.result));
+			} catch (e) {
+				console.error(e);
+			}
+		};
+		
+		fileReader.readAsText(uploadedFile);
 	}
 	
 	async function getLayout(layout_url) {
@@ -65,7 +66,7 @@ const Validator = () => {
 	}
 	
 	async function validate() {
-		let layout_url = null, expected = null;
+		let layout_url = null;
 		
 		if (input_url.current.value === '') {
 			alert('input layout url first');
@@ -78,17 +79,20 @@ const Validator = () => {
 			alert('upload expectations first');
 			return;
 		} else {
-			expected = await getJson(file_upload.current.files[0]);
+			// expected = await getJson(file_upload.current.files[0]);
 		}
 		
-		const layout = await getLayout(layout_url);
+		console.log(layout_url);
+		console.log(expected);
 		
-		console.log(layout);
+		// const layout = await getLayout(layout_url);
+		
+		// console.log(layout);
 	}
 	
 	return (
 		<StyledValidator>
-			<input ref={file_upload} type='file' hidden />
+			<input ref={file_upload} type='file' onChange={getJson} hidden />
 			
 			<Link id='linker' to='/'>Back</Link>
 			
