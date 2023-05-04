@@ -3,6 +3,7 @@ import { StyledValidator } from '../styles';
 import { useRef, useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import querystring from 'querystring';
 
 const Validator = () => {
 	const comparison_tables = useRef(null);
@@ -10,7 +11,7 @@ const Validator = () => {
 	const input_url = useRef(null);
 	const upload_button = useRef(null);
 	const [api_key, setApiKey] = useState(null);
-	const [expected, setExpected] = useState(null);
+	const [expected_dict, setExpected] = useState(null);
 	const [cookies, setCookie] = useCookies(['user']);
 	
 	useEffect(() => {
@@ -41,42 +42,28 @@ const Validator = () => {
 	
 	async function getLayout(layout_url) {
 		const pieces = layout_url.split('/');
-		
 		const layout_id = pieces[4], env_url = pieces[2];
 		
-		const headers = {
-			'Authorization': `Token ${api_key}`,
-			'Accept': 'application/json'
-		}
+		var response = await axios.get(`/api/get_layout?` +
+			querystring.stringify({
+				layout_id: layout_id,
+				env_url: env_url,
+				api_key: api_key
+			})
+		);
 		
-		// axios.defaults.baseURL = `https:/${env_url}`;
-		var response = await axios.get(`/api/v5/layouts/${layout_id}`, {headers});
-		
-		console.log(response);
-		
-		return response;
-		
-		// const call = async() => {
-		// 	const response = await fetch('https:/' + env_url + '/api/v5/layouts/' + layout_id, {
-		// 		method: 'GET',
-		// 		crossorigin: true,
-		// 		mode: 'cors',
-		// 		credentials: 'include',
-		// 		headers: {
-		// 			'Accept': 'application/json',
-		// 			'Authorization': 'Token ' + api_key
-		// 		}
-		// 	});
-		// 	console.log(response);
-		// 	return response;
-		// 	// const layout = await response.json();
-		// 	// return layout
-		// };
-		// 
-		// return await call();
+		return response.data;
 	}
 	
-	async function validate() {
+	function generate_locations(data) {
+		var location = {};
+		for (let i = 0; i < Object.keys(data).length; i++) {
+			location[data[i].name] = i;
+		}
+		return location;
+	}
+	
+	async function generateTable() {
 		let layout_url = null;
 		
 		if (input_url.current.value === '') {
@@ -91,12 +78,18 @@ const Validator = () => {
 			return;
 		}
 		
-		console.log(layout_url);
-		console.log(expected);
-		
 		const layout = await getLayout(layout_url);
 		
-		console.log(layout);
+		const expected_dict_location = generate_locations(expected_dict);
+		
+		const supervision_dict = {
+			0: 'Default',
+			1: 'Consensus',
+			2: 'Autotranscribe',
+			3: 'Always'
+		};
+		
+		// generate table here
 	}
 	
 	return (
@@ -108,7 +101,7 @@ const Validator = () => {
 			<div id="input-container">
 				<input ref={input_url} placeholder='enter layout url' />
 				<button ref={upload_button} onClick={upload}>upload expectations</button>
-				<button onClick={validate}>validate layout</button>
+				<button onClick={generateTable}>validate layout</button>
 			</div>
 			
 			<div id="table-container" ref={comparison_tables}></div>
