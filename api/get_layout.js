@@ -1,22 +1,27 @@
+// const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+import fetch from 'node-fetch';
+
 const handler = async (req, res) => {
 	console.log('starting here');
 	
-	const _importDynamic = new Function('modulePath', 'return import(modulePath)');
+	// const _importDynamic = new Function('modulePath', 'return import(modulePath)');
 	
-	console.log('declaring import function');
+	// console.log('declaring import function');
 	
-	const fetch = async function (...args) {
-		const {default: fetch} = await _importDynamic('node-fetch');
-		return fetch(...args);
-	}
+	// const fetch = async function (...args) {
+	// 	const {default: fetch} = await _importDynamic('node-fetch');
+	// 	return fetch(...args);
+	// }
 	
-	console.log('declared fetch function');
-	console.log(fetch);
+	// console.log('declared fetch function');
+	// console.log(fetch);
 	
 	const { layout_id, env_url, api_key } = req.query;
 	let url=`https://${env_url}/api/v5/layouts/${layout_id}`
 	
 	console.log('variable set up and url check');
+	console.log(url);
+	console.log(api_key);
 	
 	try {
 		console.log('starting try');
@@ -43,6 +48,8 @@ const handler = async (req, res) => {
 		
 		res.status(200).json(data);
 	} catch (error) {
+		console.log(error);
+		
 		res.status(500).json(error);
 	}
 };
