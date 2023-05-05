@@ -46,18 +46,64 @@ const StyledValidator = styled.main`
 	
 	#table-container {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
+		align-items: center;
 	}
 	
-	
+	table {
+		width: 100%;
+		max-width: 1100px;
+		overflow-x: scrollable;
+		border-collapse: collapse;
+		border-top: 1px solid var(--white);
+		border-bottom: 1px solid var(--white);
+		
+		margin-top: var(--spacing-md);
+		
+		thead {
+			background-color: var(--warm-gray-90);
+			height: 40px;
+			
+			.head-row {
+				font-size: var(--fz-md);
+			}
+			
+			tr {
+				.layout-name {
+					padding: var(--spacing-xs) 0;
+					font-size: var(--fz-lg);
+					border-bottom: 1px solid var(--white);
+				}
+				
+				th {
+					padding: var(--spacing-xxs) 0;
+				}
+			}
+		}
+		
+		tbody {
+			tr {
+				.wrong {
+					border-top: 1px solid var(--red-60);
+					border-bottom: 1px solid var(--red-60);
+				}
+				
+				.wrong-left {
+					border-left: 1px solid var(--red-60);
+				}
+				
+				.wrong-right {
+					border-right: 1px solid var(--red-60);
+				}
+				
+				td {
+					font-size: var(--fz-xs);
+					padding: var(--spacing-xxs) var(--spacing-xs);
+				}
+			}
+		}
+	}
 `;
 
 export default StyledValidator;
-
-	
-// 	border-radius: 0;
-// 	background-color: var(--blue-90);
-	
-// 	&:hover, &:focus {
-// 		filter: brightness(1.1);
-// 	}

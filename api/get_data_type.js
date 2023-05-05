@@ -2,8 +2,8 @@ import fetch from 'node-fetch';
 
 const handler = async (req, res) => {
 	
-	const { layout_id, env_url, api_key } = req.query;
-	let url=`https://${env_url}/api/v5/layouts/${layout_id}`
+	const { data_type_id, env_url, api_key } = req.query;
+	let url=`https://${env_url}/api/v5/data_types/${data_type_id}`
 	
 	try {
 		const response = await fetch(url, {
@@ -19,7 +19,6 @@ const handler = async (req, res) => {
 		}
 		
 		const data = await response.json();
-		
 		res.status(200).json(data);
 	} catch (error) {
 		res.status(500).json(error);

@@ -63,6 +63,128 @@ const Validator = () => {
 		return location;
 	}
 	
+	async function getFields(layout, layout_url) {
+		let fields = [];
+		let check_for_existing = {};
+		const supervision_dict = {
+			0: 'Default',
+			1: 'Consensus',
+			2: 'Autotranscribe',
+			3: 'Always'
+		};
+		const expected_dict_location = generate_locations(expected_dict);
+		
+		const variations = layout.layout_version.layout_variations;
+		let variation;
+		for (let i = 0; i < variations.length; i++) {
+			if (!variations[i].origin_version_id) {
+				variation = variations[i];
+			}
+		}
+		
+		for (let field_index = 0; field_index < variation.layout_fields.length; field_index++) {
+			const curr_field = variation.layout_fields[field_index];
+			
+			if (curr_field.name in expected_dict_location) {
+				if (curr_field.name in check_for_existing) {
+					fields[check_for_existing[curr_field.name]].amount += 1;
+					continue;
+				} else {
+					check_for_existing[curr_field.name] = fields.length;
+				}
+				
+				const expected_item = expected_dict[expected_dict_location[curr_field.name]];
+				let temp = {
+					name: curr_field.name, amount: 1,
+					data_type: curr_field.data_type_id,
+					expected_data_type: expected_item.type,
+					data_type_mismatch: false,
+					expected_supervision: expected_item.supervision,
+					supervision: supervision_dict[curr_field.supervision],
+					supervision_mismatch: false,
+				};
+				
+				const response = await axios.get(`/api/get_data_type?` +
+				querystring.stringify({
+					data_type_id: temp.data_type,
+					env_url: layout_url.split('/')[2],
+					api_key: api_key
+				})
+				);
+				temp.data_type = response.data.name;
+				
+				temp.supervision_mismatch = temp.expected_supervision !== temp.supervision;
+				temp.data_type_mismatch = temp.expected_data_type !== temp.data_type;
+				
+				fields.push(temp);
+			}
+		}
+		
+		return fields;
+	}
+	
+	function createHeader(title) {
+		const thead = document.createElement('thead');
+		
+		const names = ['Field ID', 'Data Type', 'Expected Data Type', 'Supervision', 'Expected Supervision'];
+		const numCols = names.length;
+		
+		const headtr1 = document.createElement('tr');
+		const nameCell = document.createElement('th');
+		nameCell.className = 'layout-name';
+		nameCell.setAttribute('colspan', numCols);
+		nameCell.innerHTML = title;
+		headtr1.appendChild(nameCell);
+		thead.appendChild(headtr1);
+		
+		const headtr2 = document.createElement('tr');
+		headtr2.className = 'head-row';
+		
+		for (let i = 0; i < numCols; i++) {
+			const temp = document.createElement('th');
+			temp.innerHTML = names[i];
+			headtr2.appendChild(temp);
+		}
+		thead.appendChild(headtr2);
+		
+		return thead;
+	}
+	
+	async function createBody(layout, layout_url) {
+		const tbody = document.createElement('tbody');
+		
+		const fields = await getFields(layout, layout_url);
+		for (let f_index = 0; f_index < fields.length; f_index++) {
+			const row = tbody.insertRow(-1);
+			
+			if (f_index % 2 === 1) {
+				row.style = "background-color: var(--warm-gray-50)";
+			}
+			
+			const curr_field = fields[f_index];
+			
+			row.insertCell(0).innerHTML = curr_field.name;
+			
+			const c1 = row.insertCell(1), c2 = row.insertCell(2);
+			c1.innerHTML = curr_field.data_type;
+			c2.innerHTML = curr_field.expected_data_type;
+			if (curr_field.data_type_mismatch) {
+				c1.classList.add('wrong', 'wrong-left');
+				c2.classList.add('wrong', 'wrong-right');
+			}
+			
+			const c3 = row.insertCell(3), c4 = row.insertCell(4);
+			c3.innerHTML = curr_field.supervision;
+			c4.innerHTML = curr_field.expected_supervision;
+			if (curr_field.supervision_mismatch) {
+				c3.classList.add('wrong', 'wrong-left');
+				c4.classList.add('wrong', 'wrong-right');
+			}
+		}
+		
+		return tbody;
+	}
+	
 	async function generateTable() {
 		let layout_url = null;
 		
@@ -80,16 +202,12 @@ const Validator = () => {
 		
 		const layout = await getLayout(layout_url);
 		
-		const expected_dict_location = generate_locations(expected_dict);
+		const table = document.createElement('table');
 		
-		const supervision_dict = {
-			0: 'Default',
-			1: 'Consensus',
-			2: 'Autotranscribe',
-			3: 'Always'
-		};
+		table.appendChild(createHeader(layout.name));
+		table.appendChild(await createBody(layout, layout_url));
 		
-		// generate table here
+		comparison_tables.current.appendChild(table);
 	}
 	
 	return (
