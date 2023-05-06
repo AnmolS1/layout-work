@@ -21,8 +21,11 @@ function App() {
 	useEffect(() => {
 		if (cookies.api_key) {
 			setApiKey(cookies.api_key);
+		} else {
+			setCookie('api_key', 'e3d8678389c98577c8b3969809e430b7862a3440', { path: '/' });
+			setApiKey('e3d8678389c98577c8b3969809e430b7862a3440');
 		}
-	}, [cookies.api_key]);
+	}, [cookies.api_key, setCookie]);
 	
 	return (
 		<div className="App">

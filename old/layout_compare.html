@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" language="javascript">
+
+async function parseJsonFile(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader()
+    fileReader.onload = event => resolve(JSON.parse(event.target.result))
+    fileReader.onerror = error => reject(error)
+    fileReader.readAsText(file)
+  })
+}
+
+async function get_data_type(id){
+var api_key = document.getElementById("api_key").value;
+var layout_url=document.getElementById("layout_url").value;
+layout_url_split=layout_url.split("/")
+console.log(layout_url_split[3])
+layout_id=layout_url_split[4]
+env_url=layout_url_split[2]
+http_method=layout_url_split[0]
+get_data_type = async (id) => {
+    response = await fetch(http_method+'/'+env_url+'/api/v5/data_types/'+id, {
+        method: 'GET',
+    crossorigin: true,    
+    mode: 'cors',
+    credentials: "include",
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer '+api_key,
+      'Access-Control-Allow-Origin':'*'
+    }
+  });
+  const field = await response.json(); //extract JSON from the http response
+  return field
+}
+return await get_data_type()
+}
+
+function create_data_dict_location(data_dict){
+  var dict_location = {};
+  for (let i = 0; i < Object.keys(data_dict['fields']).length; i++){
+    dict_location[data_dict.fields[i].name]=i
+  }
+  return dict_location
+}
+async function get_layout(){
+var api_key = document.getElementById("api_key").value;
+var layout_url=document.getElementById("layout_url").value;
+layout_url_split=layout_url.split("/")
+console.log(layout_url_split[3])
+layout_id=layout_url_split[4]
+env_url=layout_url_split[2]
+http_method=layout_url_split[0]
+api_call = async () => {
+   response = await fetch(http_method+'/'+env_url+'/api/v5/layouts/'+layout_id, {
+    method: 'GET',
+    crossorigin: true,    
+    mode: 'cors',
+    credentials: "include",
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer '+api_key,
+      'Access-Control-Allow-Origin':'*'
+    }
+  });
+  layout = await response.json(); //extract JSON from the http response
+  return layout
+}
+return await api_call()
+}
+
+
+
+function compare_layout_to_dictionary(){
+  file=document.getElementById("upload").files[0];
+  
+  const compare_layout_data_dict = async () => {
+    const data_dict = await parseJsonFile(file);
+    const layout= await get_layout();
+    const dict_location=create_data_dict_location(data_dict)
+    console.log(dict_location)
+    const body = document.body;
+    const layout_table = document.createElement('table');
+    layout_table.style.width='100px'
+    layout_table.style.border = '1px solid black'
+    var supervision_dict = {
+    0: "Default",
+    2: "Autotranscribe",
+    3: "Always",
+    1: "Consensus"
+    };
+    //console.log(layout)
+    const tr = layout_table.insertRow();
+    const td_name = tr.insertCell();
+    td_name.appendChild(document.createTextNode("Name"));
+    td_name.style.border = '1px solid black';
+    const td_output_name = tr.insertCell();
+    td_output_name.appendChild(document.createTextNode("Output Name"));
+    td_output_name.style.border = '1px solid black';
+    const td_type = tr.insertCell();
+    td_type.appendChild(document.createTextNode("Data Type"));
+    td_type.style.border = '1px solid black';
+    const td_dictionary_type = tr.insertCell();
+    td_dictionary_type.appendChild(document.createTextNode("Expected Data Type"));
+    td_dictionary_type.style.border = '1px solid black';
+    const td_supervision = tr.insertCell();
+    td_supervision.appendChild(document.createTextNode("Supervision"));
+    td_supervision.style.border = '1px solid black';
+    const td_dict_supervision = tr.insertCell();
+    td_dict_supervision.appendChild(document.createTextNode("Expected Supervision"));
+    td_dict_supervision.style.border = '1px solid black';
+    body.append(layout.name)
+    for (let i = 0; i < Object.keys(layout.layout_version.layout_variations).length; i++) {
+        //console.log(layout.layout_version.layout_variations[i].name)
+        for (let l = 0; l < Object.keys(layout.layout_version.layout_variations[i].layout_fields).length; l++) {
+          var supervision_mismatch=false
+          var type_mismatch = false
+            if(Object.keys(dict_location).includes(layout.layout_version.layout_variations[i].layout_fields[l].name)){
+              
+
+              const tr = layout_table.insertRow();
+              //console.log(layout.layout_version.layout_variations[i].layout_fields[l])
+              current_item = layout.layout_version.layout_variations[i].layout_fields[l]
+              current_dict_item = data_dict['fields'][dict_location[current_item.name]]
+              const td_name = tr.insertCell();
+              td_name.appendChild(document.createTextNode(current_item.name));
+              td_name.style.border = '1px solid black';
+              const td_output_name = tr.insertCell();
+              td_output_name.appendChild(document.createTextNode(current_item.output_name));
+              td_output_name.style.border = '1px solid black';
+              
+              const td_type = tr.insertCell();
+              const current_item_type=await get_data_type(current_item.data_type_id)
+              //console.log(current_item_type)
+              td_type.appendChild(document.createTextNode(current_item_type.name));
+              td_type.style.border = '1px solid black';
+
+              if(JSON.stringify(current_dict_item.expected_supervision)!==JSON.stringify(supervision_dict[current_item.supervision])){
+                supervision_mismatch=true
+              }
+              console.log(JSON.stringify(current_dict_item.type))
+              console.log(JSON.stringify(current_item_type.name))
+              if(JSON.stringify(current_dict_item.type)!==JSON.stringify(current_item_type.name)){
+                type_mismatch=true
+              }
+                const td_data_dict_type = tr.insertCell();
+                td_data_dict_type.appendChild(document.createTextNode(current_dict_item.type));
+              if(type_mismatch){
+                td_data_dict_type.style.border = '2px solid red';
+              }else{
+                td_data_dict_type.style.border = '1px solid black';
+              }
+              const td_supervision = tr.insertCell();
+              td_supervision.appendChild(document.createTextNode(supervision_dict[current_item.supervision]));
+              td_supervision.style.border = '1px solid black';
+              const td_data_dict_supervision = tr.insertCell();
+                td_data_dict_supervision.appendChild(document.createTextNode(current_dict_item.expected_supervision));
+              if(supervision_mismatch){
+                td_data_dict_supervision.style.border = '2px solid red';
+              }else{
+                td_data_dict_supervision.style.border = '1px solid black';
+              }
+            }
+
+            //if (i === 1 && j === 1) {
+            //td.setAttribute('rowSpan', '2');
+            //}
+            
+            }
+        
+  }
+
+  body.append(layout_table)
+    //console.log(layout.layout_version.layout_variations);
+};
+compare_layout_data_dict()
+
+}
+
+
+
+
+//Add layout_id and generate page view from layout_id
+</script>
+</head>
+
+<body id='body'>
+    <div>
+    <label>API Key</label>
+    <input type="text" placeholder="Enter your API Key" id="api_key"/>
+    </div>
+    <div>
+        <label>Layout URL</label>
+        <input type="text" placeholder="https://hs..." id="layout_url"/>
+    </div>
+    <div>
+    <!--<button onclick="api_call()"> Retrieve layout </button>-->
+</div>
+Upload expected field values in json format
+<div>
+  
+  <input type="file" id="upload"/>
+</div>
+<div>
+  <button onclick="compare_layout_to_dictionary()"> Compare layout to Data dictionary </button>
+</div>
+    <div id='div'>
+
+</div>
+</body>
+</html>

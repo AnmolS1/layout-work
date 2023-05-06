@@ -1,0 +1,822 @@
+[
+    {
+        "name": "FORM_TYPE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "FORM_VERSION",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "VETERAN_FIRST_NAME",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_INITIAL",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_MIDDLE_INITIAL",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_LAST_NAME",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_SSN",
+        "supervision": "Default",
+        "type": "SSN/EIN/TIN"
+    },
+    {
+        "name": "VA_FILE_NUMBER",
+        "supervision": "Default",
+        "type": "AlphaNumeric"
+    },
+    {
+        "name": "VETDIED_ACTIVEDUTY_Y",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "VETDIED_ACTIVEDUTY_N",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "VETERANS_SERVICE_NUMBER",
+        "supervision": "Default",
+        "type": "AlphaNumeric"
+    },
+    {
+        "name": "VETERAN_DATE_OF_DEATH",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "CLAIMANT_NAME",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "CLAIMANT_FIRST_NAME",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "CLAIMANT_LAST_NAME",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "CLAIMANT_MIDDLE_INITIAL",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "RELATIONSHIP_SURVIVING_SPOUSE",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "RELATIONSHIP_PARENT",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "RELATIONSHIP_CHILD",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "RELATIONSHIP_CUSTODIAN",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CLAIMANT_SSN",
+        "supervision": "Default",
+        "type": "SSN/EIN/TIN"
+    },
+    {
+        "name": "CLAIMANT_DOB",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "CLAIMANT_ADDRESS_LINE1",
+        "supervision": "Default",
+        "type": "Address"
+    },
+    {
+        "name": "CLAIMANT_ADDRESS_LINE2",
+        "supervision": "Default",
+        "type": "Address"
+    },
+    {
+        "name": "CLAIMANT_ADDRESS_CITY",
+        "supervision": "Default",
+        "type": "Address"
+    },
+    {
+        "name": "CLAIMANT_ADDRESS_STATE",
+        "supervision": "Default",
+        "type": "US State"
+    },
+    {
+        "name": "CLAIMANT_ADDRESS_COUNTRY",
+        "supervision": "Default",
+        "type": "Freeform Characters"
+    },
+    {
+        "name": "CLAIMANT_ADDRESS_ZIP5",
+        "supervision": "Default",
+        "type": "US Zip Code"
+    },
+    {
+        "name": "CLAIMANT_ADDRESS_FULL_BLOCK",
+        "supervision": "Default",
+        "type": "Address"
+    },
+    {
+        "name": "CLAIM_TYPE_DIC",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CLAIM_TYPE_ACCRUED_BENEFITS",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CLAIM_TYPE_SURVIVOR_PENSION",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "DATE_ENTERED_TO_SERVICE",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "BRANCH_OF_SERVICE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "BRANCH_OF_SERVICE_ARMY",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BRANCH_OF_SERVICE_NAVY",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BRANCH_OF_SERVICE_AIR-FORCE",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BRANCH_OF_SERVICE_MARINE",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BRANCH_OF_SERVICE_COAST_GUARD",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BRANCH_OF_SERVICE_SPACE",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BRANCH_OF_SERVICE_NOAA",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BRANCH_OF_SERVICE_USPHS",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "DATE_SEPARATED_FROM_SERVICE",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "LAST_SEPARATION_PLACE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "POW_YES",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "POW_NO",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "TIMES_VETERAN_MARRIED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "TIMES_VETERAN_MARRIED_1",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "TIMES_VETERAN_MARRIED_2",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_1_DATE",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_1_PLACE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_2_DATE",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_2_PLACE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_1_TO",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_1_TO_FIRST_NAME",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_1_TO_LAST_NAME",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_1_TO_MID_INT",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_2_TO_FIRST_NAME",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_2_TO_LAST_NAME",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_2_TO_MID_INT",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_2_TO",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_1_TYPE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_2_TYPE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_1_HOW_ENDED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_2_HOW_ENDED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_1_DATE_ENDED",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_1_PLACE_ENDED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_2_DATE_ENDED",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_2_PLACE_ENDED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "VETERAN_MARRIAGE_OTHER_EXPLANATION",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "REMARRIED_AFTER_VET_DEATH_YES",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "REMARRIED_AFTER_VET_DEATH_NO",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "TIMES_CLAIMANT_MARRIED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_1_DATE",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_1_PLACE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_2_DATE",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_2_PLACE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_1_TO",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_2_TO",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_1_TYPE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_2_TYPE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_1_HOW_ENDED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_2_HOW_ENDED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_1_DATE_ENDED",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_1_PLACE_ENDED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_2_DATE_ENDED",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_2_PLACE_ENDED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_OTHER_EXPLANATION",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CB_REMARRIAGE_END_BY_DEATH",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_REMARRIAGE_END_BY_DIVORCE",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_MARRIAGE_DID_NOT_END",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_REMARRIAGE_END_BY_OTHER",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "REMARRIAGE_END_BY_DEATH",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "REMARRIAGE_END_BY_DIVORCE",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "MARRIAGE_DID_NOT_END",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "REMARRIAGE_END_BY_OTHER",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "ADDITIONAL_MARRIAGES_Y",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "ADDITIONAL_MARRIAGES_N",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "VET_ADDITIONAL_MARRIAGES_Y",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "VET_ADDITIONAL_MARRIAGES_N",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CL_ADDITIONAL_MARRIAGES_Y",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CL_ADDITIONAL_MARRIAGES_N",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_CL_MARR1_ENDED_DEATH",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_CL_MARR1_ENDED_DIVORCE",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_CL_MARR1_ENDED_OTHER",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_CL_MARR1_ENDED_OTHEREXPLAIN",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CB_CL_MARR1_ENDED_DEATH",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_CL_MARR2_ENDED_DIVORCE",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_CL_MARR2_ENDED_OTHER",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_CL_MARR2_ENDED_OTHEREXPLAIN",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_3_DATE",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_3_PLACE",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_3_DATE_ENDED",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "CLAIMANT_MARRIAGE_3_PLACE_ENDED",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "AWARE_OF_MARRIGE_VALIDITY_YES",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "AWARE_OF_MARRIAGE_VALIDITY_NO",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "AWARE_OF_MARRIAGE_VALIDITY_YES",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "AWARE_OF_MARRIGE_VALIDITY_NO",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "NAME_OF_CHILD_1",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "NAME_OF_CHILD_2",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "NAME_OF_CHILD_3",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "DATE_OF_BIRTH_CHILD_1",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "PLACE_OF_BIRTH_CHILD_1",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "DATE_OF_BIRTH_CHILD_2",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "PLACE_OF_BIRTH_CHILD_2",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "DATE_OF_BIRTH_CHILD_3",
+        "supervision": "Default",
+        "type": "Date - MMDDYYYY"
+    },
+    {
+        "name": "PLACE_OF_BIRTH_CHILD_3",
+        "supervision": "Default",
+        "type": "Generic Text"
+    },
+    {
+        "name": "CHILD_1_SSN",
+        "supervision": "Default",
+        "type": "SSN/EIN/TIN"
+    },
+    {
+        "name": "CHILD_2_SSN",
+        "supervision": "Default",
+        "type": "SSN/EIN/TIN"
+    },
+    {
+        "name": "CHILD_3_SSN",
+        "supervision": "Default",
+        "type": "SSN/EIN/TIN"
+    },
+    {
+        "name": "BIOLOGICAL_CHILD_1",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BIOLOGICAL_CHILD_2",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BIOLOGICAL_CHILD_3",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "ADOPTED_CHILD_1",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "ADOPTED_CHILD_2",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "ADOPTED_CHILD_3",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "STEPCHILD_1",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "STEPCHILD_2",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "STEPCHILD_3",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_1_18_TO_23",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_2_18_TO_23",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_3_18_TO_23",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_1_DISABLED",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_2_DISABLED",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_3_DISABLED",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_1_MARRIED",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_2_MARRIED",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_3_MARRIED",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_1_PREV_MARRIED",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_2_PREV_MARRIED",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CHILD_3_PREV_MARRIED",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "OOH_NAME_OF_CHILD_1",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "OOH_NAME_OF_CHILD_2",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "OOH_NAME_OF_CHILD_3",
+        "supervision": "Default",
+        "type": "Name"
+    },
+    {
+        "name": "CB_CHILD1_LIVE_WITH_OTHERS",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_CHILD2_LIVE_WITH_OTHERS",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CB_CHILD3_LIVE_WITH_OTHERS",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BENEFIT_DIC",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "BENEFIT_DIC38",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "FLASH_TEXT",
+        "supervision": "Default",
+        "type": "Freeform Characters"
+    },
+    {
+        "name": "VA_STAMP",
+        "supervision": "Default",
+        "type": "AlphaNumeric Symbols Rev"
+    },
+    {
+        "name": "CLAIM_TYPE_DIC_PACTACT",
+        "supervision": "Default",
+        "type": "Checkbox"
+    },
+    {
+        "name": "CLAIMANT_SIGNATURE_X",
+        "supervision": "Default",
+        "type": "AlphaNumeric"
+    },
+    {
+        "name": "CLAIMANT_SIGNATURE",
+        "supervision": "Default",
+        "type": "Signature"
+    }
+]

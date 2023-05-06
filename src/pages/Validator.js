@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 import { StyledValidator } from '../styles';
 import { useRef, useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import axios from 'axios';
-import querystring from 'querystring';
 
 const Validator = () => {
 	const comparison_tables = useRef(null);
@@ -44,15 +42,21 @@ const Validator = () => {
 		const pieces = layout_url.split('/');
 		const layout_id = pieces[4], env_url = pieces[2];
 		
-		var response = await axios.get(`/api/get_layout?` +
-			querystring.stringify({
-				layout_id: layout_id,
-				env_url: env_url,
-				api_key: api_key
-			})
-		);
+		let url = `https://${env_url}/api/v5/layouts/${layout_id}`;
+		const response = await fetch(url, {
+			method: 'GET',
+			crossorigin: true,
+			mode: 'cors',
+			credentials: 'include',
+			headers: {
+				'Accept': 'application/json',
+				'Authorization': `Token ${api_key}`,
+				'Access-Control-Allow-Origin': '*'
+			}
+		});
+		const layout = await response.json();
 		
-		return response.data;
+		return layout;
 	}
 	
 	function generate_locations(data) {
@@ -104,14 +108,18 @@ const Validator = () => {
 					supervision_mismatch: false,
 				};
 				
-				const response = await axios.get(`/api/get_data_type?` +
-				querystring.stringify({
-					data_type_id: temp.data_type,
-					env_url: layout_url.split('/')[2],
-					api_key: api_key
-				})
-				);
-				temp.data_type = response.data.name;
+				let url = `https://${layout_url.split('/')[2]}/api/v5/data_types/${temp.data_type}`;
+				const response = await fetch(url, {
+					method: 'GET', mode: 'cors',
+					crossorigin: true, credentials: 'include',
+					headers: {
+						'Accept': 'application/json',
+						'Authorization': `Token ${api_key}`,
+						'Access-Control-Allow-Origin': '*',
+					}
+				});
+				var answer = await response.json();
+				temp.data_type = answer.name;
 				
 				temp.supervision_mismatch = temp.expected_supervision !== temp.supervision;
 				temp.data_type_mismatch = temp.expected_data_type !== temp.data_type;
@@ -163,7 +171,8 @@ const Validator = () => {
 			
 			const curr_field = fields[f_index];
 			
-			row.insertCell(0).innerHTML = curr_field.name;
+			const num = curr_field.amount > 1 ? ` (${curr_field.amount})` : '';
+			row.insertCell(0).innerHTML = curr_field.name + num;
 			
 			const c1 = row.insertCell(1), c2 = row.insertCell(2);
 			c1.innerHTML = curr_field.data_type;

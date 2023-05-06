@@ -1,0 +1,22 @@
+#!/bin/bash
+
+cd ~/Desktop/ibm/va\ viccs/layout-work
+
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="chrome-dev-session" --disable-web-security &
+CHROME_TASK=$!
+
+sleep 3
+
+npm start &
+SITE_TASK=$!
+
+while [ true ] ; do
+	read -t 3 -n 1
+	if [ $? = 0 ] ; then
+		break
+	fi
+done
+
+kill -9 $CHROME_TASK
+kill -9 $SITE_TASK
+rm -dr chrome-dev-session
