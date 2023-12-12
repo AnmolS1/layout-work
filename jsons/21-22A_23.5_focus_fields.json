@@ -1,0 +1,139 @@
+{
+    "fields": [
+        {
+            "name": "VETERAN_FULL_NAME",
+            "expected_supervision": "Default",
+            "type": "Name"
+        },
+        {
+            "name": "VETERAN_FIRST_NAME",
+            "expected_supervision": "Default",
+            "type": "Name"
+        },
+        {
+            "name": "VETERAN_LAST_NAME",
+            "expected_supervision": "Default",
+            "type": "Name"
+        },
+        {
+            "name": "VETERAN_MIDDLE_INITIAL",
+            "expected_supervision": "Default",
+            "type": "Name"
+        },
+        {
+            "name": "VETERAN_NAME",
+            "expected_supervision": "Default",
+            "type": "Name"
+        },
+        {
+            "name": "VETERAN_SSN",
+            "expected_supervision": "Default",
+            "type": "SSN/EIN/TIN"
+        },
+        {
+            "name": "VA_FILE_NUMBER",
+            "expected_supervision": "Default",
+            "type": "AlphaNumeric"
+        },
+        {
+            "name": "CLAIMANT_NAME",
+            "expected_supervision": "Default",
+            "type": "Name"
+        },
+        {
+            "name": "CLAIMANT_FIRST_NAME",
+            "expected_supervision": "Default",
+            "type": "Name"
+        },
+        {
+            "name": "CLAIMANT_LAST_NAME",
+            "expected_supervision": "Default",
+            "type": "Name"
+        },
+        {
+            "name": "CLAIMANT_MIDDLE_INITIAL",
+            "expected_supervision": "Default",
+            "type": "Name"
+        },
+        {
+            "name": "POA_ORG",
+            "expected_supervision": "Default",
+            "type": "Generic Text"
+        },
+        {
+            "name": "CLAIMANT_SIGNATURE",
+            "expected_supervision": "Default",
+            "type": "Signature"
+        },
+        {
+            "name": "REP_SIGNATURE",
+            "expected_supervision": "Default",
+            "type": "Signature"
+        },
+        {
+            "name": "FORM_TYPE",
+            "expected_supervision": "Default",
+            "type": "Generic Text"
+        },
+        {
+            "name": "VA_STAMP",
+            "expected_supervision": "Default",
+            "type": "AlphaNumeric Symbols Rev"
+        },
+        {
+            "name": "FLASH_TEXT",
+            "expected_supervision": "Default",
+            "type": "Generic Text"
+        },
+        {
+            "name": "CLAIMANT_REPRESENTATIVE_NAME",
+            "expected_supervision": "Default",
+            "type": "Generic Text"
+        },
+        {
+            "name": "CB_INDIVIDUAL_IS_AGENT",
+            "expected_supervision": "Default",
+            "type": "Checkbox"
+        },
+        {
+            "name": "CB_INDIVIDUAL_IS_ATTORNEY",
+            "expected_supervision": "Default",
+            "type": "Checkbox"
+        },
+        {
+            "name": "CB_INDIVIDUAL_IS_SVC_ORG_REP",
+            "expected_supervision": "Default",
+            "type": "Checkbox"
+        },
+        {
+            "name": "CB_INDIVIDUAL_IS_SEC_14",
+            "expected_supervision": "Default",
+            "type": "Checkbox"
+        },
+        {
+            "name": "CLAIMAINT_SIGNATURE_PAGE1",
+            "expected_supervision": "Default",
+            "type": "Signature"
+        },
+        {
+            "name": "17ASignatureofIndividualNamedItem1",
+            "expected_supervision": "Default",
+            "type": "Signature"
+        },
+        {
+            "name": "CLAIMANT_SIGNATURE_DATE",
+            "expected_supervision": "Default",
+            "type": "Date - MMDDYYYY"
+        },
+        {
+            "name": "REP_SIGNATURE_DATE",
+            "expected_supervision": "Default",
+            "type": "Date - MMDDYYYY"
+        },
+        {
+            "name": "REPRESENTATIVE_ADDRESS_FULL_BLOCK",
+            "expected_supervision": "Default",
+            "type": "Address"
+        }
+    ]
+}
